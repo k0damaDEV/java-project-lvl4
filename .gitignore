@@ -9,3 +9,4 @@ build
 
 # Ignore IDE files
 .DS_STORE
+.DS_Store
