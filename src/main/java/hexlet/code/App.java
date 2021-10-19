@@ -22,6 +22,6 @@ public class App {
     }
 
     private static void addRoutes(Javalin app) {
-        app.get("/", ctx -> ctx.result("Hello world!"));
+        app.get("/", ctx -> ctx.result("Hellso world!"));
     }
 }
