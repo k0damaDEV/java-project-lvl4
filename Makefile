@@ -4,6 +4,10 @@ clean:
 build:
 	./gradlew clean build
 
+start:
+	gradle run
+
+
 install:
 	./gradlew install
 
