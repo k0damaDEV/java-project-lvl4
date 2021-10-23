@@ -24,6 +24,7 @@ public class UrlController {
         ctx.attribute("url", url);
         ctx.render("urls/show.html");
     };
+
     public static Handler showUrls = ctx -> {
         List<Url> urlList = new QUrl()
                 .setMaxRows(10)
@@ -31,6 +32,7 @@ public class UrlController {
         ctx.attribute("urls", urlList);
         ctx.render("urls/index.html");
     };
+
     public static Handler newUrl = ctx -> {
         String url = ctx.formParam("url");
         StringBuilder finalUrl = new StringBuilder();
@@ -64,6 +66,7 @@ public class UrlController {
         }
         Url urlToAdd = new Url(finalUrl.toString());
         urlToAdd.save();
+        ctx.status(200);
         ctx.sessionAttribute("flash-type", "success");
         ctx.sessionAttribute("flash", "Страница успешно добавлена");
         ctx.redirect("urls");

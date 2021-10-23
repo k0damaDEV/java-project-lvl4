@@ -66,10 +66,10 @@ public class App {
     private static void addRoutes(Javalin app) {
         app.get("/", RootController.welcome);
         app.routes(() -> {
-            path("/", () -> {
-                post("urls", UrlController.newUrl);
-                get("urls", UrlController.showUrls);
-                get("urls/{id}", UrlController.showUrl);
+            path("urls", () -> {
+                post("", UrlController.newUrl);
+                get("", UrlController.showUrls);
+                get("/{id}", UrlController.showUrl);
             });
         });
     }
