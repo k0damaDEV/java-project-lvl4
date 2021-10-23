@@ -84,10 +84,16 @@ public final class AppTest {
                         .name.equalTo("https://testsitelog.com")
                         .findOne();
 
+        HttpResponse<String> secondResponse = Unirest
+                        .get(baseUrl + "/urls/" + url.getId())
+                        .asString();
+        String singleDisplayBody = secondResponse.getBody();
+
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(url).isNotNull();
         assertThat(body).contains("Страница успешно добавлена");
         assertThat(body).contains("https://testsitelog.com");
+        assertThat(singleDisplayBody).contains("https://testsitelog.com");
     }
 
     @Test

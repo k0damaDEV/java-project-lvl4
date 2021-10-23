@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b25dc979-81a0-444a-889f-a313fb1745e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seoApp.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/seoApp.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/RootController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/RootController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +63,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.AppTest">
+  <component name="RunManager" selected="Gradle.AppTest.newUrlTest">
     <configuration name="AppTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -177,8 +171,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AppTest" />
         <item itemvalue="Gradle.AppTest.newUrlTest" />
+        <item itemvalue="Gradle.AppTest" />
         <item itemvalue="Gradle.AppTest.newExistingArticleTest" />
         <item itemvalue="Gradle.AppTest.newIncorrectUrlTest" />
         <item itemvalue="Gradle.AppTest.urlsTest" />
@@ -206,7 +200,7 @@
       <workItem from="1634843516159" duration="2447000" />
       <workItem from="1634849022097" duration="4944000" />
       <workItem from="1634854008843" duration="639000" />
-      <workItem from="1634962885068" duration="2978000" />
+      <workItem from="1634962885068" duration="3414000" />
     </task>
     <servers />
   </component>
