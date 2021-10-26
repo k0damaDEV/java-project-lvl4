@@ -62,11 +62,8 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.AppTest">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <envs>
-        <env name="APP_ENV" value="development" />
-      </envs>
       <option name="MAIN_CLASS_NAME" value="hexlet.code.App" />
       <module name="app.main" />
       <extension name="coverage">
@@ -198,7 +195,7 @@
       <workItem from="1634984263376" duration="1418000" />
       <workItem from="1635025172780" duration="1621000" />
       <workItem from="1635195075639" duration="4531000" />
-      <workItem from="1635202279273" duration="6739000" />
+      <workItem from="1635202279273" duration="6979000" />
     </task>
     <servers />
   </component>
