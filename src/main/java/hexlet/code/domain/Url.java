@@ -20,8 +20,7 @@ public final class Url extends Model {
     private Instant createdAt;
     @OneToMany
     private List<UrlCheck> urlChecks;
-
-    private int lastStatusCode;
+    private int lastStatusCode = 0;
     private Instant lastCheckDate;
 
     public Url(String name) {
