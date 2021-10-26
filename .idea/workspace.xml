@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b25dc979-81a0-444a-889f-a313fb1745e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seoApp.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/seoApp.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +64,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.AppTest.nonExistentSiteCheckTest">
+  <component name="RunManager" selected="Gradle.AppTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="APP_ENV" value="development" />
@@ -176,8 +174,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AppTest.nonExistentSiteCheckTest" />
         <item itemvalue="Gradle.AppTest" />
+        <item itemvalue="Gradle.AppTest.nonExistentSiteCheckTest" />
         <item itemvalue="Gradle.AppTest.mockParseTest" />
         <item itemvalue="Gradle.java-project-lvl4 [generateMigrations]" />
         <item itemvalue="Application.App" />
@@ -212,7 +210,7 @@
       <workItem from="1635195075639" duration="4531000" />
       <workItem from="1635202279273" duration="7585000" />
       <workItem from="1635249064703" duration="4587000" />
-      <workItem from="1635253857260" duration="3878000" />
+      <workItem from="1635253857260" duration="4511000" />
     </task>
     <servers />
   </component>
