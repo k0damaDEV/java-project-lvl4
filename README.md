@@ -5,3 +5,5 @@
 <a href="https://codeclimate.com/github/k0damaDEV/java-project-lvl4/test_coverage"><img src="https://api.codeclimate.com/v1/badges/f3ae95421cecdef66bac/test_coverage" /></a>
 
 Link to project demo: https://young-journey-66420.herokuapp.com/
+
+How to use:
