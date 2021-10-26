@@ -73,7 +73,7 @@ public class UrlController {
         } catch (Exception e) {
             ctx.sessionAttribute("flash-type", "danger");
             ctx.sessionAttribute("flash", e.getMessage());
-            ctx.render("/urls/" + id);
+            ctx.redirect("/urls/" + id);
             return;
         }
 
