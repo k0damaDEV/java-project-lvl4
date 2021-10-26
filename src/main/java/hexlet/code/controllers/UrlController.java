@@ -103,30 +103,23 @@ public class UrlController {
                 .id.equalTo(id)
                 .findOne();
 
-        List<UrlCheck> urlCheckList = new QUrlCheck()
-                .url.id.equalTo(id)
-                .findList();
-
         Map<String, String> analyzedUrl = urlAnalyzer(url.getName());
 
         if (analyzedUrl == null) {
-            ctx.attribute("urlCheckList", urlCheckList);
-            ctx.attribute("url", url);
             ctx.sessionAttribute("flash-type", "danger");
             ctx.sessionAttribute("flash", "Страница не существует");
-            ctx.render("urls/show.html");
+            ctx.redirect("/urls/" + id);
             return;
         }
 
         UrlCheck urlCheck = new UrlCheck();
         urlCheck.setStatusCode(Integer.parseInt(analyzedUrl.get("statusCode")));
+        urlCheck.setUrl(url);
         urlCheck.save();
 
-        new QUrlCheck()
-                .id.equalTo(urlCheck.getId())
-                .asUpdate()
-                .set("url_id", id)
-                .update();
+        url.setLastStatusCode(Integer.parseInt(analyzedUrl.get("statusCode")));
+        url.setLastCheckDate(urlCheck.getCreatedAt());
+        url.save();
 
         ctx.sessionAttribute("flash-type", "success");
         ctx.sessionAttribute("flash", "Страница успешно проверена");

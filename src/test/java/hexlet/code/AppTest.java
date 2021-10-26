@@ -146,17 +146,22 @@ public final class AppTest {
                 .field("url", mockUrl)
                 .asEmpty();
 
-        Url url = new QUrl()
-                .name.equalTo(editedMockUrl)
-                .findOne();
+        HttpResponse<String> requestCheckTest = Unirest
+                .post(baseUrl + "/urls/" + url.getId() + "/checks")
+                .asString();
 
         HttpResponse<String> response = Unirest
                 .get(baseUrl + "/urls")
                 .asString();
 
+        Url url = new QUrl()
+                .name.equalTo(editedMockUrl)
+                .findOne();
+
         String body = response.getBody();
 
-        assertThat(body).contains("Страница успешно добавлена");
+        assertThat(requestCheckTest.getStatus()).isEqualTo(302); // redirected
+        assertThat(body).contains("Страница успешно проверена");
         assertThat(body).contains(editedMockUrl);
         assertThat(url).isNotNull();
     }

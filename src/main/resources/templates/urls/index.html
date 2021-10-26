@@ -22,7 +22,8 @@
                 <td>
                     <a th:text="*{name}" th:href="@{/urls/{id}(id=*{id})}"></a>
                 </td>
-                <td th:text="${#temporals.format(url.getCreatedAt(), 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${#temporals.format(url.getLastCheckDate(), 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="*{lastStatusCode}"></td>
             </tr>
         </tbody>
     </table>

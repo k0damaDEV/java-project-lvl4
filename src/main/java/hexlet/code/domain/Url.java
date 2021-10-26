@@ -18,9 +18,27 @@ public final class Url extends Model {
     private Instant createdAt;
     @OneToMany
     private List<UrlCheck> urlChecks;
+    private int lastStatusCode;
+    private Instant lastCheckDate;
 
     public Url(String name) {
         this.name = name;
+    }
+
+    public int getLastStatusCode() {
+        return lastStatusCode;
+    }
+
+    public void setLastStatusCode(int lastStatusCode) {
+        this.lastStatusCode = lastStatusCode;
+    }
+
+    public Instant getLastCheckDate() {
+        return lastCheckDate;
+    }
+
+    public void setLastCheckDate(Instant lastCheckDate) {
+        this.lastCheckDate = lastCheckDate;
     }
 
     public int getId() {
