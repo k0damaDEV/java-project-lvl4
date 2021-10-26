@@ -1,11 +1,12 @@
 package hexlet.code.domain;
 
 import io.ebean.Model;
-import io.ebean.annotation.DbDefault;
 import io.ebean.annotation.WhenCreated;
-import org.jetbrains.annotations.Nullable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.time.Instant;
 import java.util.List;
 
