@@ -77,12 +77,14 @@ public class UrlController {
             return;
         }
 
-        UrlCheck urlCheck = new UrlCheck();
-        urlCheck.setStatusCode(Integer.parseInt(analyzedUrl.get("statusCode")));
-        urlCheck.setH1(analyzedUrl.get("h1"));
-        urlCheck.setDescription(analyzedUrl.get("description"));
-        urlCheck.setTitle(analyzedUrl.get("title"));
-        urlCheck.setUrl(url);
+        UrlCheck urlCheck = new UrlCheck(
+                url,
+                Integer.parseInt(analyzedUrl.get("statusCode")),
+                analyzedUrl.get("title"),
+                analyzedUrl.get("h1"),
+                analyzedUrl.get("description")
+        );
+
         urlCheck.save();
 
         url.setLastStatusCode(Integer.parseInt(analyzedUrl.get("statusCode")));

@@ -26,7 +26,8 @@ public final class UrlCheck extends Model {
     public UrlCheck() {
     }
 
-    public UrlCheck(int statusCode, String title, String h1, String description) {
+    public UrlCheck(Url url, int statusCode, String title, String h1, String description) {
+        this.url = url;
         this.statusCode = statusCode;
         this.title = title;
         this.h1 = h1;
