@@ -1,12 +1,11 @@
 package hexlet.code.domain;
 
 import io.ebean.Model;
+import io.ebean.annotation.DbDefault;
 import io.ebean.annotation.WhenCreated;
+import org.jetbrains.annotations.Nullable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
@@ -20,6 +19,7 @@ public final class Url extends Model {
     private Instant createdAt;
     @OneToMany
     private List<UrlCheck> urlChecks;
+
     private int lastStatusCode;
     private Instant lastCheckDate;
 
