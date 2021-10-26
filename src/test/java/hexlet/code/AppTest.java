@@ -36,6 +36,7 @@ public final class AppTest {
         url.save();
         mockWebServer = new MockWebServer();
         mockWebServer.enqueue(new MockResponse().setResponseCode(200));
+        mockWebServer.enqueue(new MockResponse().setResponseCode(105));
         mockWebServer.start();
     }
 
@@ -164,5 +165,35 @@ public final class AppTest {
         assertThat(body).contains("Страница успешно проверена");
         assertThat(body).contains(editedMockUrl);
         assertThat(url).isNotNull();
+    }
+
+    @Test
+    void nonExistentSiteCheckTest() throws IOException {
+        String mockUrl = mockWebServer.url("/").toString();
+        mockWebServer.shutdown();
+        String editedMockUrl = mockUrl.substring(0, mockUrl.length() - 1);
+
+        HttpResponse postRequest = Unirest
+                .post(baseUrl + "/urls")
+                .field("url", editedMockUrl)
+                .asEmpty();
+
+        Url url = new QUrl()
+                .name.equalTo(editedMockUrl)
+                .findOne();
+
+        HttpResponse checksRequest = Unirest
+                .post(baseUrl + "/urls/" + url.getId() + "/checks")
+                .asEmpty();
+
+        System.out.println(checksRequest.getStatus());
+
+        HttpResponse<String> response = Unirest
+                .get(baseUrl + "/urls/" + url.getId())
+                .asString();
+
+        System.out.println("!!!!!!!!!!");
+        System.out.println(response.getBody());
+        assertThat(true).isTrue();
     }
 }
