@@ -27,4 +27,16 @@
         </tbody>
     </table>
     </div>
+    <div class="container">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/urls(page=(${page < 2}) ? 1 : (${page - 1}))}">Prev</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/urls(page=${page + 1})}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </section>

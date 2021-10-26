@@ -40,6 +40,16 @@
                 <th class="col-2">Дата проверки</th>
             </tr>
             </thead>
+            <tbody>
+            <tr th:each="urlCheck : ${urlCheckList}">
+                <td th:text="${urlCheck.id}"></td>
+                <td th:text="${urlCheck.statusCode}"></td>
+                <td th:text="${urlCheck.title}"></td>
+                <td th:text="${urlCheck.h1}"></td>
+                <td th:text="${urlCheck.description}"></td>
+                <td th:text="${#temporals.format(urlCheck.getCreatedAt(), 'dd/MM/yyyy HH:mm')}"></td>
+            </tr>
+            </tbody>
         </table>
     </div>
 </section>

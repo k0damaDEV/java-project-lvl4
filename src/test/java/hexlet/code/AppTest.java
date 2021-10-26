@@ -7,11 +7,15 @@ import io.ebean.Transaction;
 import io.javalin.Javalin;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,20 +24,25 @@ public final class AppTest {
     private static String baseUrl;
     private static Transaction transaction;
     private static Url url;
+    private static MockWebServer mockWebServer;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         app = App.getApp();
         app.start();
         int port = app.port();
         baseUrl = "http://localhost:" + port;
         url = new Url("https://yandex.ru");
         url.save();
+        mockWebServer = new MockWebServer();
+        mockWebServer.enqueue(new MockResponse().setResponseCode(200));
+        mockWebServer.start();
     }
 
     @AfterAll
-    public static void afterAll() {
+    public static void afterAll() throws IOException {
         app.stop();
+        mockWebServer.shutdown();
     }
 
     @BeforeEach
@@ -125,5 +134,30 @@ public final class AppTest {
 
         assertThat(response.getStatus()).isEqualTo(422);
         assertThat(body).contains("Страница уже существует");
+    }
+
+    @Test
+    void mockParseTest() {
+        String mockUrl = mockWebServer.url("/").toString();
+        String editedMockUrl = mockUrl.substring(0, mockUrl.length() - 1);
+
+        HttpResponse postRequest = Unirest
+                .post(baseUrl + "/urls")
+                .field("url", mockUrl)
+                .asEmpty();
+
+        Url url = new QUrl()
+                .name.equalTo(editedMockUrl)
+                .findOne();
+
+        HttpResponse<String> response = Unirest
+                .get(baseUrl + "/urls")
+                .asString();
+
+        String body = response.getBody();
+
+        assertThat(body).contains("Страница успешно добавлена");
+        assertThat(body).contains(editedMockUrl);
+        assertThat(url).isNotNull();
     }
 }

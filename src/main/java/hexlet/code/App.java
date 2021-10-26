@@ -59,7 +59,7 @@ public class App {
     }
 
     private static int getPort() {
-        String port = System.getenv().getOrDefault("PORT", "5000");
+        String port = System.getenv().getOrDefault("PORT", "4000");
         return Integer.valueOf(port);
     }
 
@@ -70,6 +70,7 @@ public class App {
                 post("", UrlController.newUrl);
                 get("", UrlController.showUrls);
                 get("/{id}", UrlController.showUrl);
+                post("/{id}/checks", UrlController.checkStart);
             });
         });
     }
