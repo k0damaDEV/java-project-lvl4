@@ -143,7 +143,7 @@ public final class AppTest {
 
         HttpResponse postRequest = Unirest
                 .post(baseUrl + "/urls")
-                .field("url", mockUrl)
+                .field("url", editedMockUrl)
                 .asEmpty();
 
         HttpResponse<String> requestCheckTest = Unirest

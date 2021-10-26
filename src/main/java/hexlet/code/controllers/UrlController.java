@@ -4,18 +4,11 @@ import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;
 import hexlet.code.domain.query.QUrlCheck;
+import hexlet.code.services.UrlServices;
 import io.javalin.http.Handler;
 import io.javalin.http.NotFoundResponse;
-import kong.unirest.HttpResponse;
-import kong.unirest.Unirest;
-import kong.unirest.UnirestException;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class UrlController {
     public static Handler showUrl = ctx -> {
@@ -42,15 +35,8 @@ public class UrlController {
 
     public static Handler showUrls = ctx -> {
         int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
-        int urlsPerPage = 10;
-        int offset = (page - 1) * urlsPerPage;
 
-        List<Url> urlList = new QUrl()
-                .setFirstRow(offset)
-                .setMaxRows(urlsPerPage)
-                .orderBy()
-                .id.asc()
-                .findList();
+        List<Url> urlList = UrlServices.getUrlList(page);
 
         ctx.attribute("page", page);
         ctx.attribute("urls", urlList);
@@ -59,38 +45,19 @@ public class UrlController {
 
     public static Handler newUrl = ctx -> {
         String url = ctx.formParam("url");
-        StringBuilder finalUrl = new StringBuilder();
+        String finalUrl;
+
         try {
-            URL url1 = new URL(url);
-            finalUrl.append(url1.getProtocol())
-                            .append("://")
-                            .append(url1.getHost());
-            if (url1.getPort() != -1) {
-                finalUrl.append(":")
-                        .append(url1.getPort());
-            }
-        } catch (MalformedURLException e) {
+            finalUrl = UrlServices.formParamUrlBuilder(url);
+            UrlServices.createUrl(finalUrl);
+        } catch (Exception e) {
             ctx.status(422);
             ctx.sessionAttribute("flash-type", "danger");
-            ctx.sessionAttribute("flash", "Некорректный URL");
+            ctx.sessionAttribute("flash", e.getMessage());
             ctx.render("index.html");
             return;
         }
 
-        Url dublicateUrl = new QUrl()
-                .name.equalTo(finalUrl.toString())
-                .findOne();
-
-        if (!Objects.equals(dublicateUrl, null)) {
-            ctx.status(422);
-            ctx.sessionAttribute("flash-type", "danger");
-            ctx.sessionAttribute("flash", "Страница уже существует");
-            ctx.render("index.html");
-            return;
-        }
-        Url urlToAdd = new Url(finalUrl.toString());
-        urlToAdd.save();
-        ctx.status(200);
         ctx.sessionAttribute("flash-type", "success");
         ctx.sessionAttribute("flash", "Страница успешно добавлена");
         ctx.redirect("urls");
@@ -98,17 +65,15 @@ public class UrlController {
 
     public static Handler checkStart = ctx -> {
         int id = ctx.pathParamAsClass("id", Integer.class).getOrDefault(null);
+        Url url = UrlServices.getUrlById(id);
+        Map<String, String> analyzedUrl;
 
-        Url url = new QUrl()
-                .id.equalTo(id)
-                .findOne();
-
-        Map<String, String> analyzedUrl = urlAnalyzer(url.getName());
-
-        if (analyzedUrl == null) {
+        try {
+            analyzedUrl = UrlServices.urlAnalyzer(url.getName());
+        } catch (Exception e) {
             ctx.sessionAttribute("flash-type", "danger");
-            ctx.sessionAttribute("flash", "Страница не существует");
-            ctx.redirect("/urls/" + id);
+            ctx.sessionAttribute("flash", e.getMessage());
+            ctx.render("/urls/" + id);
             return;
         }
 
@@ -125,18 +90,4 @@ public class UrlController {
         ctx.sessionAttribute("flash", "Страница успешно проверена");
         ctx.redirect("/urls/" + id);
     };
-
-    public static Map<String, String> urlAnalyzer(String url) {
-        Map<String, String> result = new HashMap<>();
-        System.out.println(url);
-        try {
-            HttpResponse<String> response = Unirest
-                    .get(url)
-                    .asString();
-            result.put("statusCode", String.valueOf(response.getStatus()));
-        } catch (UnirestException e) {
-            return null;
-        }
-        return result;
-    }
 }

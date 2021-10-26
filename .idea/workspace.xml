@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b25dc979-81a0-444a-889f-a313fb1745e0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seoApp.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/seoApp.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seoApp.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/seoApp.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seoApp.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/seoApp.trace.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/h2/1.0__initial.sql" beforeDir="false" />
@@ -74,7 +74,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.AppTest.mockParseTest">
+  <component name="RunManager" selected="Gradle.AppTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="APP_ENV" value="development" />
@@ -176,8 +176,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AppTest.mockParseTest" />
         <item itemvalue="Gradle.AppTest" />
+        <item itemvalue="Gradle.AppTest.mockParseTest" />
         <item itemvalue="Gradle.java-project-lvl4 [generateMigrations]" />
         <item itemvalue="Application.App" />
         <item itemvalue="Application.MigrationGenerator" />
@@ -211,7 +211,8 @@
       <workItem from="1635025172780" duration="1621000" />
       <workItem from="1635195075639" duration="4531000" />
       <workItem from="1635202279273" duration="7585000" />
-      <workItem from="1635249064703" duration="2217000" />
+      <workItem from="1635249064703" duration="4587000" />
+      <workItem from="1635253857260" duration="2397000" />
     </task>
     <servers />
   </component>

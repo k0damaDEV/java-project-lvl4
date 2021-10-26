@@ -5,7 +5,7 @@ build:
 	./gradlew clean build
 
 start:
-	gradle run
+	APP_ENV=development ./gradlew run
 
 
 install:

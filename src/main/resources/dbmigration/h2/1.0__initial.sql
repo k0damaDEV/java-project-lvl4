@@ -5,6 +5,7 @@ create table url (
   last_status_code              integer not null,
   last_check_date               timestamp,
   created_at                    timestamp not null,
+  constraint uq_url_name unique (name),
   constraint pk_url primary key (id)
 );
 
