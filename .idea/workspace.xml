@@ -62,7 +62,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.MigrationGenerator">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hexlet.code.App" />
       <module name="app.main" />
@@ -195,7 +195,7 @@
       <workItem from="1634984263376" duration="1418000" />
       <workItem from="1635025172780" duration="1621000" />
       <workItem from="1635195075639" duration="4531000" />
-      <workItem from="1635202279273" duration="6979000" />
+      <workItem from="1635202279273" duration="7288000" />
     </task>
     <servers />
   </component>
