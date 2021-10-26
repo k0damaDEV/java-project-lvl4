@@ -35,7 +35,6 @@ public final class AppTest {
         url = new Url("https://yandex.ru");
         url.save();
         mockWebServer = new MockWebServer();
-        mockWebServer.enqueue(new MockResponse().setResponseCode(200));
         mockWebServer.start();
     }
 
@@ -138,6 +137,7 @@ public final class AppTest {
 
     @Test
     void mockParseTest() {
+        mockWebServer.enqueue(new MockResponse().setResponseCode(200));
         String mockUrl = mockWebServer.url("/").toString();
         String editedMockUrl = mockUrl.substring(0, mockUrl.length() - 1);
 

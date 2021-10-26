@@ -79,6 +79,9 @@ public class UrlController {
 
         UrlCheck urlCheck = new UrlCheck();
         urlCheck.setStatusCode(Integer.parseInt(analyzedUrl.get("statusCode")));
+        urlCheck.setH1(analyzedUrl.get("h1"));
+        urlCheck.setDescription(analyzedUrl.get("description"));
+        urlCheck.setTitle(analyzedUrl.get("title"));
         urlCheck.setUrl(url);
         urlCheck.save();
 

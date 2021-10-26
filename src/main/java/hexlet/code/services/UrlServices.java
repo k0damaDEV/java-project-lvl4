@@ -9,10 +9,12 @@ import io.ebean.DuplicateKeyException;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import kong.unirest.UnirestException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,17 +38,35 @@ public class UrlServices {
     }
 
     public static Map<String, String> urlAnalyzer(String url) throws NonExistentURLException {
-        Map<String, String> result = new HashMap<>();
-        System.out.println(url);
+        String h1;
+        String description;
+        String statusCode;
+        String title;
+
         try {
             HttpResponse<String> response = Unirest
                     .get(url)
                     .asString();
-            result.put("statusCode", String.valueOf(response.getStatus()));
+
+            String body = response.getBody();
+            Document doc = Jsoup.parse(body);
+            Element h1Element = doc.selectFirst("h1");
+            Element descriptionElement = doc.selectFirst("meta[name=description]");
+
+            h1 = h1Element == null ? "" : h1Element.text();
+            description = descriptionElement == null ? "" : descriptionElement.attr("content");
+            statusCode = String.valueOf(response.getStatus());
+            title = doc.title();
         } catch (UnirestException e) {
             throw new NonExistentURLException();
         }
-        return result;
+
+        return Map.of(
+                "statusCode", statusCode,
+                "title", title,
+                "h1", h1,
+                "description", description
+        );
     }
 
     public static void createUrl(String url) throws DuplicateURLException {
