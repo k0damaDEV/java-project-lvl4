@@ -16,6 +16,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,6 +28,7 @@ public final class AppTest {
     private static Transaction transaction;
     private static Url url;
     private static MockWebServer mockWebServer;
+    private static String mockHtml;
 
     @BeforeAll
     public static void beforeAll() throws IOException {
@@ -32,26 +36,26 @@ public final class AppTest {
         app.start();
         int port = app.port();
         baseUrl = "http://localhost:" + port;
-        url = new Url("https://yandex.ru");
+        url = new Url("https://existensite.com");
         url.save();
-        mockWebServer = new MockWebServer();
-        mockWebServer.start();
+        mockHtml = readFileContent("src/test/resources/fixture.html");
     }
 
     @AfterAll
     public static void afterAll() throws IOException {
         app.stop();
-        mockWebServer.shutdown();
     }
 
     @BeforeEach
     void beforeEach() {
+        mockWebServer = new MockWebServer();
         transaction = DB.beginTransaction();
     }
 
     @AfterEach
-    void afterEach() {
+    void afterEach() throws IOException {
         transaction.rollback();
+        mockWebServer.shutdown();
     }
 
     @Test
@@ -92,16 +96,10 @@ public final class AppTest {
                         .name.equalTo("https://testsitelog.com")
                         .findOne();
 
-        HttpResponse<String> secondResponse = Unirest
-                        .get(baseUrl + "/urls/" + url.getId())
-                        .asString();
-        String singleDisplayBody = secondResponse.getBody();
-
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(url).isNotNull();
         assertThat(body).contains("Страница успешно добавлена");
         assertThat(body).contains("https://testsitelog.com");
-        assertThat(singleDisplayBody).contains("https://testsitelog.com");
     }
 
     @Test
@@ -123,10 +121,10 @@ public final class AppTest {
     }
 
     @Test
-    void newExistingArticleTest() {
+    void newExistingUrlTest() {
         HttpResponse<String> response = Unirest
                 .post(baseUrl + "/urls")
-                .field("url", "https://yandex.ru")
+                .field("url", "https://existensite.com")
                 .asString();
 
         String body = response.getBody();
@@ -136,33 +134,40 @@ public final class AppTest {
     }
 
     @Test
-    void mockParseTest() {
-        mockWebServer.enqueue(new MockResponse().setResponseCode(200));
-        String mockUrl = mockWebServer.url("/").toString();
+    void mockParseTest() throws IOException {
+        mockWebServer.enqueue(new MockResponse().setBody(mockHtml));
+        mockWebServer.start();
+        String mockUrl = mockWebServer.url("").toString();
         String editedMockUrl = mockUrl.substring(0, mockUrl.length() - 1);
 
         HttpResponse postRequest = Unirest
                 .post(baseUrl + "/urls")
-                .field("url", editedMockUrl)
+                .field("url", mockUrl)
                 .asEmpty();
-
-        HttpResponse<String> requestCheckTest = Unirest
-                .post(baseUrl + "/urls/" + url.getId() + "/checks")
-                .asString();
-
-        HttpResponse<String> response = Unirest
-                .get(baseUrl + "/urls")
-                .asString();
 
         Url url = new QUrl()
                 .name.equalTo(editedMockUrl)
                 .findOne();
 
-        String body = response.getBody();
+        HttpResponse<String> checksPostRequest = Unirest
+                .post(baseUrl + "/urls/" + url.getId() + "/checks")
+                .asString();
 
-        assertThat(requestCheckTest.getStatus()).isEqualTo(302); // redirected
+        HttpResponse<String> getResponse = Unirest
+                .get(baseUrl + "/urls/" + url.getId())
+                .asString();
+
+        String body = getResponse.getBody();
+
+        assertThat(getResponse.getStatus()).isEqualTo(200);
         assertThat(body).contains("Страница успешно проверена");
-        assertThat(body).contains(editedMockUrl);
-        assertThat(url).isNotNull();
+        assertThat(body).contains("TestDescription");
+        assertThat(body).contains("TestH1");
+        assertThat(body).contains("TestTitle");
+    }
+
+    private static String readFileContent(String path) throws IOException {
+        Path resultPath = Paths.get(path).toAbsolutePath().normalize();
+        return Files.readString(resultPath);
     }
 }
