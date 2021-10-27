@@ -3,10 +3,7 @@ package hexlet.code.domain;
 import io.ebean.Model;
 import io.ebean.annotation.WhenCreated;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
@@ -20,8 +17,9 @@ public final class Url extends Model {
     private Instant createdAt;
     @OneToMany
     private List<UrlCheck> urlChecks;
-    private int lastStatusCode = 0;
+    private Integer lastStatusCode = 1;
     private Instant lastCheckDate;
+
 
     public Url(String name) {
         this.name = name;

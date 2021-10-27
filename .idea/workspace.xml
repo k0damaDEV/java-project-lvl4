@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b25dc979-81a0-444a-889f-a313fb1745e0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seoApp.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/seoApp.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/h2/1.0__initial.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/h2/1.1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/model/1.0__initial.model.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/model/1.1.model.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/postgres/1.0__initial.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dbmigration/postgres/1.1.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +68,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.AppTest">
+  <component name="RunManager" selected="Application.MigrationGenerator">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="16" />
       <option name="MAIN_CLASS_NAME" value="hexlet.code.App" />
@@ -213,7 +205,8 @@
       <workItem from="1635202279273" duration="7585000" />
       <workItem from="1635249064703" duration="4587000" />
       <workItem from="1635253857260" duration="13868000" />
-      <workItem from="1635285442792" duration="332000" />
+      <workItem from="1635285442792" duration="2153000" />
+      <workItem from="1635327732127" duration="443000" />
     </task>
     <servers />
   </component>

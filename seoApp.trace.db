@@ -1,4 +1,0 @@
-2021-10-26 22:50:26 jdbc[4]: exception
-org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "TITLE VARCHAR(10)": "STRINGDECODE('\u041c\u043e\u0431\u0438\u043b\u044c\u043d\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u0412\u041a\u043e\u04... (38)"
-Value too long for column "TITLE VARCHAR(10)": "STRINGDECODE('\u041c\u043e\u0431\u0438\u043b\u044c\u043d\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u0412\u041a\u043e\u04... (38)"; SQL statement:
-insert into url_check (status_code, title, h1, description, created_at, url_id) values (?,?,?,?,?,?) [22001-200]
