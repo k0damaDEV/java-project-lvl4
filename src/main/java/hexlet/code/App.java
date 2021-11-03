@@ -70,7 +70,7 @@ public class App {
                 post("", UrlController.newUrl);
                 get("", UrlController.showUrls);
                 get("/{id}", UrlController.showUrl);
-                post("/{id}/checks", UrlController.checkStart);
+                post("/{id}/checks", UrlController.runCheck);
             });
         });
     }

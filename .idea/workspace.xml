@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="b25dc979-81a0-444a-889f-a313fb1745e0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/errors/DuplicateURLException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/errors/InvalidURLException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/errors/NonExistentURLException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/services/UrlServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/urls/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/urls/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/urls/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/urls/show.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,54 +80,41 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Gradle.AppTest">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="APP_ENV" value="development" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="hexlet.code.App" />
+      <module name="app.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hexlet.code.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MigrationGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hexlet.code.MigrationGenerator" />
+      <module name="app.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hexlet.code.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AppTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;hexlet.code.AppTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AppTest.mockParseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;hexlet.code.AppTest.mockParseTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AppTest.newExistingUrlTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;hexlet.code.AppTest.newExistingUrlTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -177,19 +173,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.MigrationGenerator" />
       <item itemvalue="Gradle.AppTest" />
-      <item itemvalue="Gradle.AppTest.newExistingUrlTest" />
-      <item itemvalue="Gradle.AppTest.mockParseTest" />
       <item itemvalue="Gradle.AppTest.nonexistentUrlChecksTest" />
       <item itemvalue="Gradle.AppTest.nonExistentUrlChecksTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.AppTest" />
+        <item itemvalue="Application.MigrationGenerator" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Gradle.AppTest.nonExistentUrlChecksTest" />
         <item itemvalue="Gradle.AppTest.nonexistentUrlChecksTest" />
-        <item itemvalue="Gradle.AppTest.mockParseTest" />
-        <item itemvalue="Gradle.AppTest.newExistingUrlTest" />
       </list>
     </recent_temporary>
   </component>
@@ -224,6 +220,14 @@
       <workItem from="1635253857260" duration="13868000" />
       <workItem from="1635285442792" duration="2153000" />
       <workItem from="1635327732127" duration="9180000" />
+      <workItem from="1635455532072" duration="781000" />
+      <workItem from="1635685256819" duration="51000" />
+      <workItem from="1635693236693" duration="13000" />
+      <workItem from="1635868753776" duration="1539000" />
+      <workItem from="1635878653602" duration="23000" />
+      <workItem from="1635883915403" duration="2088000" />
+      <workItem from="1635890223951" duration="2609000" />
+      <workItem from="1635931322203" duration="3424000" />
     </task>
     <servers />
   </component>

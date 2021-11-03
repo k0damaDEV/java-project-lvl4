@@ -4,9 +4,18 @@ import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;
 import hexlet.code.domain.query.QUrlCheck;
-import hexlet.code.services.UrlServices;
+import io.ebean.DuplicateKeyException;
 import io.javalin.http.Handler;
 import io.javalin.http.NotFoundResponse;
+import kong.unirest.HttpResponse;
+import kong.unirest.Unirest;
+import kong.unirest.UnirestException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -16,44 +25,59 @@ public class UrlController {
 
         Url url = new QUrl()
                 .id.equalTo(id)
+                .urlChecks.fetch()
+                .orderBy()
+                .urlChecks.createdAt.desc()
                 .findOne();
 
         if (url == null) {
             throw new NotFoundResponse();
         }
 
-        List<UrlCheck> urlCheckList = new QUrlCheck()
-                .url.id.equalTo(id)
-                .setMaxRows(15)
-                .orderBy().id.desc()
-                        .findList();
-
-        ctx.attribute("urlCheckList", urlCheckList);
         ctx.attribute("url", url);
         ctx.render("urls/show.html");
     };
 
     public static Handler showUrls = ctx -> {
         int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
+        final int maxRows = 10;
+        final int offset = (page - 1) * maxRows;
 
-        List<Url> urlList = UrlServices.getUrlList(page);
+        List<Url> urlList = new QUrl()
+                .setFirstRow(offset)
+                .setMaxRows(maxRows)
+                .orderBy()
+                    .id.asc()
+                .findList();
+
+        Map<Integer, UrlCheck> checks = new QUrlCheck()
+                .url.id.asMapKey()
+                .orderBy()
+                .createdAt.desc()
+                .findMap();
 
         ctx.attribute("page", page);
+        ctx.attribute("checks", checks);
         ctx.attribute("urls", urlList);
         ctx.render("urls/index.html");
     };
 
     public static Handler newUrl = ctx -> {
         String url = ctx.formParam("url");
-        String finalUrl;
+        Url urlToSave;
 
         try {
-            finalUrl = UrlServices.formParamUrlBuilder(url);
-            UrlServices.createUrl(finalUrl);
-        } catch (Exception e) {
+            URL newUrl = new URL(url);
+            String finalUrl = newUrl.getPort() == -1
+                    ? String.format("%s://%s", newUrl.getProtocol(), newUrl.getHost())
+                    : String.format("%s://%s:%d", newUrl.getProtocol(), newUrl.getHost(), newUrl.getPort());
+            urlToSave = new Url(finalUrl);
+            urlToSave.save();
+        } catch (MalformedURLException | DuplicateKeyException e) {
+            String msg = e instanceof DuplicateKeyException ? "Страница уже существует" : "Некорректный URL";
             ctx.status(422);
             ctx.sessionAttribute("flash-type", "danger");
-            ctx.sessionAttribute("flash", e.getMessage());
+            ctx.sessionAttribute("flash", msg);
             ctx.render("index.html");
             return;
         }
@@ -63,33 +87,36 @@ public class UrlController {
         ctx.redirect("/urls");
     };
 
-    public static Handler checkStart = ctx -> {
+    public static Handler runCheck = ctx -> {
         int id = ctx.pathParamAsClass("id", Integer.class).getOrDefault(null);
-        Url url = UrlServices.getUrlById(id);
-        Map<String, String> analyzedUrl;
+
+        Url url = new QUrl()
+                .id.equalTo(id)
+                .findOne();
 
         try {
-            analyzedUrl = UrlServices.urlAnalyzer(url.getName());
-        } catch (Exception e) {
+            HttpResponse<String> response = Unirest
+                    .get(url.getName())
+                    .asString();
+
+            String body = response.getBody();
+            Document doc = Jsoup.parse(body);
+            Element h1Element = doc.selectFirst("h1");
+            Element descriptionElement = doc.selectFirst("meta[name=description]");
+
+            UrlCheck urlCheck = new UrlCheck();
+            urlCheck.setUrl(url);
+            urlCheck.setStatusCode(response.getStatus());
+            urlCheck.setTitle(doc.title());
+            urlCheck.setH1(h1Element == null ? "" : h1Element.text());
+            urlCheck.setDescription(descriptionElement == null ? "" : descriptionElement.attr("content"));
+            urlCheck.save();
+        } catch (UnirestException e) {
             ctx.sessionAttribute("flash-type", "danger");
-            ctx.sessionAttribute("flash", e.getMessage());
+            ctx.sessionAttribute("flash", "Страница не существует");
             ctx.redirect("/urls/" + id);
             return;
         }
-
-        UrlCheck urlCheck = new UrlCheck(
-                url,
-                Integer.parseInt(analyzedUrl.get("statusCode")),
-                analyzedUrl.get("title"),
-                analyzedUrl.get("h1"),
-                analyzedUrl.get("description")
-        );
-
-        urlCheck.save();
-
-        url.setLastStatusCode(Integer.parseInt(analyzedUrl.get("statusCode")));
-        url.setLastCheckDate(urlCheck.getCreatedAt());
-        url.save();
 
         ctx.sessionAttribute("flash-type", "success");
         ctx.sessionAttribute("flash", "Страница успешно проверена");

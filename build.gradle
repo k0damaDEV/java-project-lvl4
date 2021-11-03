@@ -29,6 +29,12 @@ dependencies {
   implementation 'org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE'
   implementation 'org.webjars:bootstrap:5.1.1'
 
+  compileOnly 'org.projectlombok:lombok:1.18.20'
+      annotationProcessor 'org.projectlombok:lombok:1.18.20'
+      testCompileOnly 'org.projectlombok:lombok:1.18.20'
+      testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+
   implementation 'com.h2database:h2:1.4.200'
   implementation 'org.postgresql:postgresql:42.2.24'
 
@@ -45,6 +51,7 @@ dependencies {
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
   testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
   testImplementation 'org.assertj:assertj-core:3.21.0'
+
   testImplementation 'io.ebean:ebean-test:12.11.5'
   implementation 'com.konghq:unirest-java:3.13.0'
   implementation 'org.jsoup:jsoup:1.14.3'
