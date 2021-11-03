@@ -6,16 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b25dc979-81a0-444a-889f-a313fb1745e0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/controllers/UrlController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/Url.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/errors/DuplicateURLException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/errors/InvalidURLException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/errors/NonExistentURLException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/services/UrlServices.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/urls/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/urls/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/urls/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/urls/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/UrlCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/domain/UrlCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/fixture.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/fixtures/fixture.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +72,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources/fixtures" />
+    </key>
   </component>
   <component name="RunManager" selected="Gradle.AppTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -227,7 +226,7 @@
       <workItem from="1635878653602" duration="23000" />
       <workItem from="1635883915403" duration="2088000" />
       <workItem from="1635890223951" duration="2609000" />
-      <workItem from="1635931322203" duration="3424000" />
+      <workItem from="1635931322203" duration="4171000" />
     </task>
     <servers />
   </component>

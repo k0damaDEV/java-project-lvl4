@@ -38,11 +38,11 @@ public final class AppTest {
         baseUrl = "http://localhost:" + port;
         url = new Url("https://existensite.com");
         url.save();
-        mockHtml = readFileContent("src/test/resources/fixture.html");
+        mockHtml = readFileContent("src/test/resources/fixtures/fixture.html");
     }
 
     @AfterAll
-    public static void afterAll() throws IOException {
+    public static void afterAll() {
         app.stop();
     }
 
