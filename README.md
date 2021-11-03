@@ -6,4 +6,4 @@
 
 Link to project demo: https://young-journey-66420.herokuapp.com/
 
-How to use:
+Description: small training project written with Javalin Framework which allows to grab h1, description, title of the given URLs.
